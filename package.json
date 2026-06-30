@@ -1,7 +1,7 @@
 {
-  "name": "kila-wedding-backend",
+  "name": "jason-mildred-wedding-backend",
   "version": "1.0.0",
-  "description": "Kila Wedding Invitation - Backend API",
+  "description": "Jason & Mildred Wedding Invitation - Backend API",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
