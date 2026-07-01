@@ -6,6 +6,7 @@ class RSVP extends Model {
   public attendance!: string;
   public guests!: number;
   public wishes!: string;
+  public guestNames!: string[];
 }
 
 function initRSVP(sequelize: any) {
@@ -32,12 +33,17 @@ function initRSVP(sequelize: any) {
       defaultValue: 1,
       validate: {
         min: 1,
-        max: 2,
+        max: 10,
       },
     },
     wishes: {
       type: DataTypes.TEXT,
       allowNull: true,
+    },
+    guestNames: {
+      type: DataTypes.JSON,
+      allowNull: true,
+      defaultValue: null,
     },
     createdAt: {
       type: DataTypes.DATE,

@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import rsvpRoutes from './routes/rsvp';
 import commentRoutes from './routes/comments';
+import adminRoutes from './routes/admin';
 import { sequelize } from './models';
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.get('/api/health', (_req, res) => {
 // API Routes
 app.use('/api/rsvp', rsvpRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Global error handler
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {

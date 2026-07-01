@@ -19,42 +19,8 @@ const sequelize = process.env.DATABASE_URL ? new Sequelize(process.env.DATABASE_
 } as any);
 
 // RSVP Model
-class RSVP extends Model {}
-RSVP.init({
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: { notEmpty: true },
-  },
-  attendance: {
-    type: DataTypes.ENUM('Attending', 'Not Attending'),
-    allowNull: false,
-  },
-  guests: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 1,
-    validate: { min: 1, max: 2 },
-  },
-  wishes: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-}, {
-  sequelize,
-  tableName: 'rsvps',
-  timestamps: true,
-  updatedAt: false,
-});
+import { initRSVP } from './RSVP';
+const RSVP = initRSVP(sequelize);
 
 // Comment Model
 class Comment extends Model {}

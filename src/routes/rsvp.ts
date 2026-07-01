@@ -8,8 +8,9 @@ const router = Router();
 const rsvpSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   attendance: z.enum(['Attending', 'Not Attending']),
-  guests: z.number().min(1).max(2).default(1),
+  guests: z.number().min(1).max(10).default(1),
   wishes: z.string().optional(),
+  guestNames: z.array(z.any()).optional(),
 });
 
 // POST /api/rsvp - Create RSVP
@@ -20,6 +21,7 @@ router.post('/', async (req, res) => {
     const rsvp = await RSVP.create({
       ...validatedData,
       wishes: validatedData.wishes || '',
+      guestNames: validatedData.guestNames || null,
     } as any);
 
     // Auto-create comment from RSVP wishes
